@@ -26,6 +26,7 @@ body {
     margin-bottom: 20px;
     position: relative; /* Для позиционирования относительно родителя */
     z-index: 1; /* Чтобы счет был выше картинки */
+    animation: gradientColor 5s ease infinite;
 }
 
 .player {
@@ -148,4 +149,17 @@ button {
 .image-container img {
     max-width: 300%; /* Увеличиваем размер изображения */
     height: auto;
+}
+
+  @keyframes gradientColor {
+    0% {
+      color: #7effff;
+    }
+    50% {
+      color: #21a1f1;
+    }
+    100% {
+      color: #7effff;
+    }
+  }
 }
