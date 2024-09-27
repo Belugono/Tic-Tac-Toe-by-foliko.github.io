@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game">
+        <div class="image-container">
+            <img src="https://lh4.googleusercontent.com/UPC5ISt-wFhi2GbiSErNwqAwvhvIIvnFj4Z6_N6TltqhgkzSGwflomPQOtguMUts7kz-59VmEJ9HOmmkBZernzu9i0E6m1mlZb8fF-6jrtiYBJAQsjijFgrT4v_S1TBLXQ=w1280" alt="Tic Tac Toe Image">
+        </div>
+        <div class="scoreboard">
+            <div class="player">X: <span id="scoreX">0</span></div>
+            <div class="player">O: <span id="scoreO">0</span></div>
+        </div>
+        <div class="board">
+            <div class="cell" data-index="0"></div>
+            <div class="cell" data-index="1"></div>
+            <div class="cell" data-index="2"></div>
+            <div class="cell" data-index="3"></div>
+            <div class="cell" data-index="4"></div>
+            <div class="cell" data-index="5"></div>
+            <div class="cell" data-index="6"></div>
+            <div class="cell" data-index="7"></div>
+            <div class="cell" data-index="8"></div>
+        </div>
+        <div class="buttons">
+            <button id="resetWins">Restart Wins</button>
+            <button id="reset">↺</button>
+        </div>
+        <p class="status"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

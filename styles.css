@@ -1,0 +1,144 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #282c34;
+    font-family: 'Arial', sans-serif;
+    color: #ffffff;
+    margin: 0;
+    overflow: hidden; /* Чтобы избежать прокрутки */
+}
+
+.game {
+    text-align: center;
+    position: relative; /* Для позиционирования картинки */
+}
+
+.scoreboard {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    position: relative; /* Для позиционирования относительно родителя */
+    z-index: 1; /* Чтобы счет был выше картинки */
+}
+
+.player {
+    font-size: 1.2em;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px; /* Закругленные углы */
+    overflow: hidden; /* Чтобы углы ячеек не выходили за границы */
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    background-color: #61dafb;
+    border: 2px solid #20232a;
+    font-size: 2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cell:hover {
+    background-color: #21a1f1;
+}
+
+.cell::before {
+    content: attr(data-symbol);
+    font-size: 2em;
+    font-weight: bold;
+    color: #202020;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.cell:hover::before {
+    transform: scale(1.1);
+}
+
+.status {
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Расстояние между кнопками */
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 50%; /* Максимально закругленные углы */
+    border: 5px solid #61dafb; /* Цвет контура */
+    background-color: #282c34; /* Внутренний цвет */
+    color: #fff; /* Цвет текста */
+    transition: background-color 0.3s ease, border-color 0.50s ease;
+    width: 50px; /* Ширина кнопки */
+    height: 50px; /* Высота кнопки */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button:hover {
+    background-color: #21a1f1;
+    border-color: #21a1f1;
+}
+
+button {
+    animation: rotate 5s;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(-720deg);
+    }
+}
+
+#resetWins {
+    border-radius: 15px; /* Закругленные углы 15px */
+    width: auto; /* Автоматическая ширина */
+    height: auto; /* Автоматическая высота */
+    padding: 10px 20px; /* Внутренние отступы */
+    animation: none; /* Убираем анимацию */
+}
+
+.win {
+    background-color: #66d666 !important;
+}
+
+.image-container {
+    position: absolute;
+    top: -100%; /* Начальная позиция за пределами экрана */
+    left: 50%;
+    transform: translateX(-150%) translateY(-100%);
+    transition: top 1s ease; /* Плавное появление */
+    z-index: 0; /* Чтобы изображение было под счетом */
+}
+
+.image-container img {
+    max-width: 300%; /* Увеличиваем размер изображения */
+    height: auto;
+}
