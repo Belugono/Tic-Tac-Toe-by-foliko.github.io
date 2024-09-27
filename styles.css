@@ -13,6 +13,11 @@ body {
 .game {
     text-align: center;
     position: relative; /* Для позиционирования картинки */
+    background: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: #282c34;
 }
 
 .scoreboard {
@@ -24,7 +29,8 @@ body {
 }
 
 .player {
-    font-size: 1.2em;
+    font-size: 1.5em;
+    font-weight: bold;
 }
 
 .board {
@@ -47,11 +53,12 @@ body {
     border: 2px solid #20232a;
     font-size: 2em;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .cell:hover {
     background-color: #21a1f1;
+    transform: scale(1.1);
 }
 
 .cell::before {
