@@ -11,13 +11,12 @@ body {
 }
 
 .game {
-    text-align: center;
     position: relative; /* Для позиционирования картинки */
-    background: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
     padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     background-color: #282c34;
+    background: #282c34;
+    border-radius: 30px;
+    aspect-ratio: 10;
 }
 
 .scoreboard {
@@ -138,12 +137,8 @@ button {
 }
 
 .image-container {
-    position: absolute;
-    top: -100%; /* Начальная позиция за пределами экрана */
-    left: 50%;
-    transform: translateX(-150%) translateY(-100%);
-    transition: top 1s ease; /* Плавное появление */
-    z-index: 0; /* Чтобы изображение было под счетом */
+    position: relative;
+    transform: translateX(19000%) translateY(0%);
 }
 
 .image-container img {
@@ -162,4 +157,159 @@ button {
       color: #7effff;
     }
   }
-}
+
+@layer demo {
+  @property --color1POSx {
+    inherits: false;
+    syntax: "<percentage>";
+    initial-value: 0%;
+  }
+  
+  @property --color1POSy {
+    inherits: false;
+    syntax: "<percentage>";
+    initial-value: 0%;
+  }
+  
+  @property --color2POSx {
+    inherits: false;
+    syntax: "<percentage>";
+    initial-value: 100%;
+  }
+  
+  @property --color2POSy {
+    inherits: false;
+    syntax: "<percentage>";
+    initial-value: 0%;
+  }
+  
+  @property --color3POSx {
+    inherits: false;
+    syntax: "<percentage>";
+    initial-value: 100%;
+  }
+  
+  @property --color3POSy {
+    inherits: false;
+    syntax: "<percentage>";
+    initial-value: 100%;
+  }
+  
+  @property --color4POSx {
+    inherits: false;
+    syntax: "<percentage>";
+    initial-value: 0%;
+  }
+  
+  @property --color4POSy {
+    inherits: false;
+    syntax: "<percentage>";
+    initial-value: 100%;
+  }
+  
+  @keyframes --up-n-down-1 {
+    0%, 100% { --color1POSy: 0% }
+    50%      { --color1POSy: 100% }
+  }
+  
+  @keyframes --side-to-side-1 {
+    0%, 100% { --color1POSx: 0% }
+    50%      { --color1POSx: 100% }
+  }
+  
+  @keyframes --side-to-side-2 {
+    0%, 100% { --color2POSx: 100% }
+    50%      { --color2POSx: 0% }
+  }
+  
+  @keyframes --up-n-down-2 {
+    0%, 100% { --color2POSy: 0% }
+    50%      { --color2POSy: 100% }
+  }
+  
+  @keyframes --side-to-side-3 {
+    0%, 100% { --color3POSx: 100% }
+    50%      { --color3POSx: 0% }
+  }
+  
+  @keyframes --up-n-down-3 {
+    0%, 100% { --color3POSy: 100% }
+    50%      { --color3POSy: 0% }
+  }
+  
+  @keyframes --side-to-side-4 {
+    0%, 100% { --color4POSx: 0% }
+    50%      { --color4POSx: 100% }
+  }
+  
+  @keyframes --up-n-down-4 {
+    0%, 100% { --color4POSy: 100% }
+    50%      { --color4POSy: 0% }
+  }
+  
+.game::before {
+    --color1LCH: 70% .5 150;
+    --color2LCH: 70% .5 330;
+    --color3LCH: 70% .5 270;
+    --color4LCH: 70% .5 100;
+    
+    --gradient-size: 75vw;
+    --space:;
+    
+    content:"";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    inset: -150px;
+    
+    background-image: 
+      radial-gradient(
+        var(--gradient-size) circle at var(--color1POSx) var(--color1POSy) var(--space), 
+        oklch(var(--color1LCH)), oklch(var(--color1LCH) / 0%)
+      ),
+      radial-gradient(
+        var(--gradient-size) circle at var(--color2POSx) var(--color2POSy) var(--space), 
+        oklch(var(--color2LCH)), oklch(var(--color2LCH) / 0%)
+      ),
+      radial-gradient(
+        var(--gradient-size) circle at var(--color3POSx) var(--color3POSy) var(--space), 
+        oklch(var(--color3LCH)), oklch(var(--color3LCH) / 0%)
+      ),
+      radial-gradient(
+        var(--gradient-size) circle at var(--color4POSx) var(--color4POSy) var(--space), 
+        oklch(var(--color4LCH)), oklch(var(--color4LCH) / 0%)
+      )
+    ;
+    mask-image: radial-gradient(closest-side circle at center, #000, #0000);
+    
+    @supports (background: linear-gradient(in oklab, white, black)) {
+      --space: in oklab;
+    }
+    
+    animation: 
+      --side-to-side-1 4s linear -1s infinite,
+      --up-n-down-2 4s linear -1s infinite, 
+      --side-to-side-2 4s linear infinite,
+      --up-n-down-3 4s linear infinite, 
+      --side-to-side-3 4s linear -1s infinite,
+      --up-n-down-4 4s linear -1s infinite, 
+      --side-to-side-4 4s linear infinite
+    ;
+  }
+
+
+
+
+
+@layer support.demo {
+  html {
+    display: grid;
+    min-block-size: 100%;
+  }
+  
+  body {
+    display: grid;
+    place-content: center;
+    padding: var(--size-5);
+    gap: var(--size-5);
+  } 
